@@ -68,6 +68,7 @@ const showWinner = (winner) => {
 
 // **********CHECK WINNER***************
 const checkWinner = () => {
+  let isTie = true;
   for (const pattern of winning) {
     let pos1Val = buttons[pattern[0]].innerText;
     let pos2Val = buttons[pattern[1]].innerText;
@@ -77,12 +78,27 @@ const checkWinner = () => {
     if (pos1Val != "" && pos2Val != "" && pos3Val != "") {
       if (pos1Val === pos2Val && pos2Val === pos3Val) {
         showWinner(pos1Val);
+        return;
       }
-      else{
-         console.log("Game Tie!");
-         
-      }
+      // {
+      //   message.innerText = `Game Tie!`;
+      //   // console.log("Game Tie!");
+      // }
     }
+  }
+  // };
+
+  // *****************Check for tie********************
+  for (let button of buttons) {
+    if (button.innerText === "") {
+      isTie = false;
+      break;
+    }
+  }
+
+  if (isTie) {
+    message.innerText = `Game Tie!`;
+    msgbox.classList.remove("hide");
   }
 };
 
